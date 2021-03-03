@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "marcy-moos-laggy-slaggy",
+  "version": "${version}",
+  "name": "Marcy Moos Laggy Slaggy",
+  "description": "Marcy Moo's Laggy Slaggy for OriginCSMP",
+  "authors": [
+    "Marc"
+  ],
+  "contact": {
+    "website": "https://github.com/Diliard",
+    "repo": "https://github.com/Diliard/MMLS"
+  },
+  "license": "GPL-3.0",
+  "icon": "assets/marcy-moos-laggy-slaggy/icon.png",
+  "environment": "server",
+  "entrypoints": {
+    "client": [
+      "mod.marcymooslaggyslaggy.client.MarcyMoosLaggySlaggyClient"
+    ],
+    "main": [
+      "mod.marcymooslaggyslaggy.Main"
+    ]
+  },
+  "mixins": [
+    "marcy-moos-laggy-slaggy.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.11.2",
+    "fabric": "*",
+    "minecraft": "1.16.5"
+  }
+}
