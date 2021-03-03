@@ -32,75 +32,80 @@ import java.util.TimerTask;
 abstract
 class Clear {
     int tick = 0;
-    @Shadow protected abstract void tickTime();
 
-    @Shadow @Final private List<ServerPlayerEntity> players;
+    @Shadow
+    protected abstract void tickTime();
 
-    @Shadow @NotNull public abstract MinecraftServer getServer();
+    @Shadow
+    @Final
+    private List<ServerPlayerEntity> players;
+
+    @Shadow
+    @NotNull
+    public abstract MinecraftServer getServer();
 
     @Inject(at = @At("TAIL"), method = "tick")
     private void Clear(CallbackInfo info) {
         tick = (tick + 50);
-        int secondsPassed = (tick/1000);
-
+        int secondsPassed = (tick / 1000);
         //1 Seconds
-        if(secondsPassed == 3599) {
+        if (secondsPassed == 3599) {
             PlayerManager pm = getServer().getPlayerManager();
             pm.broadcastChatMessage(new LiteralText("Entities will be cleared in 1 second!"), MessageType.GAME_INFO, Util.NIL_UUID);
 
         }
 
         //2 Seconds
-        if(secondsPassed == 3598) {
+        if (secondsPassed == 3598) {
             PlayerManager pm = getServer().getPlayerManager();
             pm.broadcastChatMessage(new LiteralText("Entities will be cleared in 2 seconds!"), MessageType.GAME_INFO, Util.NIL_UUID);
 
         }
 
         //3 Seconds
-        if(secondsPassed == 3597) {
+        if (secondsPassed == 3597) {
             PlayerManager pm = getServer().getPlayerManager();
             pm.broadcastChatMessage(new LiteralText("Entities will be cleared in 3 seconds!"), MessageType.GAME_INFO, Util.NIL_UUID);
 
         }
 
         //4 Seconds
-        if(secondsPassed == 3596) {
+        if (secondsPassed == 3596) {
             PlayerManager pm = getServer().getPlayerManager();
             pm.broadcastChatMessage(new LiteralText("Entities will be cleared in 4 seconds!"), MessageType.GAME_INFO, Util.NIL_UUID);
 
         }
 
         //5 Seconds
-        if(secondsPassed == 3595) {
+        if (secondsPassed == 3595) {
             PlayerManager pm = getServer().getPlayerManager();
             pm.broadcastChatMessage(new LiteralText("Entities will be cleared in 5 seconds!"), MessageType.GAME_INFO, Util.NIL_UUID);
 
         }
 
         //6 Seconds
-        if(secondsPassed == 3594) {
+        if (secondsPassed == 3594) {
             PlayerManager pm = getServer().getPlayerManager();
             pm.broadcastChatMessage(new LiteralText("Entities will be cleared in 6 seconds!"), MessageType.GAME_INFO, Util.NIL_UUID);
 
         }
 
         //7 Seconds
-        if(secondsPassed == 3593) {
+        if (secondsPassed == 3593) {
             PlayerManager pm = getServer().getPlayerManager();
             pm.broadcastChatMessage(new LiteralText("Entities will be cleared in 7 seconds!"), MessageType.GAME_INFO, Util.NIL_UUID);
 
         }
 
         //8 Seconds
-        if(secondsPassed == 3592) {
+        if (secondsPassed == 3592) {
             PlayerManager pm = getServer().getPlayerManager();
             pm.broadcastChatMessage(new LiteralText("Entities will be cleared in 8 seconds!"), MessageType.GAME_INFO, Util.NIL_UUID);
 
         }
 
         //9 Seconds
-        if(secondsPassed == 3591) {
+        if (secondsPassed == 3591) {
             PlayerManager pm = getServer().getPlayerManager();
             pm.broadcastChatMessage(new LiteralText("Entities will be cleared in 9 seconds!"), MessageType.GAME_INFO, Util.NIL_UUID);
 
@@ -108,59 +113,59 @@ class Clear {
 
 
         //10 Seconds
-        if(secondsPassed == 3590) {
+        if (secondsPassed == 3590) {
             PlayerManager pm = getServer().getPlayerManager();
             pm.broadcastChatMessage(new LiteralText("Entities will be cleared in 10 seconds!"), MessageType.GAME_INFO, Util.NIL_UUID);
 
         }
 
         //15 Seconds
-        if(secondsPassed == 3585) {
+        if (secondsPassed == 3585) {
             PlayerManager pm = getServer().getPlayerManager();
             pm.broadcastChatMessage(new LiteralText("Entities will be cleared in 15 seconds!"), MessageType.GAME_INFO, Util.NIL_UUID);
 
         }
 
         //30 Seconds
-        if(secondsPassed == 3570) {
+        if (secondsPassed == 3570) {
             PlayerManager pm = getServer().getPlayerManager();
             pm.broadcastChatMessage(new LiteralText("Entities will be cleared in 30 seconds!"), MessageType.GAME_INFO, Util.NIL_UUID);
 
         }
 
         //1 Minute
-        if(secondsPassed == 3540) {
+        if (secondsPassed == 3540) {
             PlayerManager pm = getServer().getPlayerManager();
             pm.broadcastChatMessage(new LiteralText("Entities will be cleared in 1 minute!"), MessageType.GAME_INFO, Util.NIL_UUID);
 
         }
 
         //5 Minutes LEFT
-        if(secondsPassed == 3300) {
+        if (secondsPassed == 3300) {
             PlayerManager pm = getServer().getPlayerManager();
             pm.broadcastChatMessage(new LiteralText("Entities will be cleared in 5 minutes!"), MessageType.GAME_INFO, Util.NIL_UUID);
         }
 
         //10 Minutes LEFT
-        if(secondsPassed == 3000) {
+        if (secondsPassed == 3000) {
             PlayerManager pm = getServer().getPlayerManager();
             pm.broadcastChatMessage(new LiteralText("Entities will be cleared in 10 minutes!"), MessageType.GAME_INFO, Util.NIL_UUID);
         }
 
         //15 Minutes LEFT
-        if(secondsPassed == 2700) {
+        if (secondsPassed == 2700) {
             PlayerManager pm = getServer().getPlayerManager();
             pm.broadcastChatMessage(new LiteralText("Entities will be cleared in 15 minutes!"), MessageType.GAME_INFO, Util.NIL_UUID);
         }
 
         //30 Minutes LEFT
-        if(secondsPassed == 1800) {
+        if (secondsPassed == 1800) {
             PlayerManager pm = getServer().getPlayerManager();
             pm.broadcastChatMessage(new LiteralText("Entities will be cleared in 30 minutes!"), MessageType.GAME_INFO, Util.NIL_UUID);
         }
 
         //1 Hour
-        if(secondsPassed == 3600) {
+        if (secondsPassed == 3600) {
             tick = 0;
             secondsPassed = 0;
             EntPurge();
@@ -171,33 +176,40 @@ class Clear {
 
     private void EntPurge() {
         ServerWorld instance = (ServerWorld) (Object) this;
-        System.out.println(instance.getEntitiesByType(null, EntityPredicates.EXCEPT_CREATIVE_OR_SPECTATOR));
         for (Entity entity : instance.getEntitiesByType(null, EntityPredicates.EXCEPT_CREATIVE_OR_SPECTATOR)) {
 
-            if (entity instanceof TameableEntity)
-            {
+            if (entity instanceof TameableEntity) {
                 TameableEntity tameableEntity = (TameableEntity) entity;
 
-                if (tameableEntity.isTamed() || tameableEntity.hasCustomName() ||tameableEntity.hasVehicle()) {
+                if (tameableEntity.isTamed() || tameableEntity.hasCustomName() || tameableEntity.hasVehicle()) {
                 } else {
                     entity.kill();
                 }
             }
-                if (entity.hasCustomName() ||
-                        entity.getType() == EntityType.ARMOR_STAND || entity.getType() == EntityType.ITEM_FRAME ||
-                        entity.getType() == EntityType.CHEST_MINECART || entity.getType() == EntityType.HOPPER_MINECART ||
-                        entity.getType() == EntityType.MINECART || entity.getType() == EntityType.FURNACE_MINECART ||
-                        entity.getType() == EntityType.COMMAND_BLOCK_MINECART || entity.getType() == EntityType.SPAWNER_MINECART ||
-                        entity.getType() == EntityType.END_CRYSTAL || entity.getType() == EntityType.PAINTING ||
-                        entity.getType() == EntityType.TNT_MINECART || entity.getType() == EntityType.ELDER_GUARDIAN ||
-                        entity.getType() == EntityType.ENDER_DRAGON || entity.getType() == EntityType.WITHER || entity.getType() == EntityType.SHULKER ||
-                        entity.getType() == EntityType.VILLAGER || entity.hasVehicle() || entity.getType() == EntityType.BOAT ||
-                        entity instanceof PlayerEntity || entity instanceof TameableEntity)
-                {
+            if (entity.hasCustomName() ||
+                    entity.getType() == EntityType.ARMOR_STAND || entity.getType() == EntityType.ITEM_FRAME ||
+                    entity.getType() == EntityType.CHEST_MINECART || entity.getType() == EntityType.HOPPER_MINECART ||
+                    entity.getType() == EntityType.MINECART || entity.getType() == EntityType.FURNACE_MINECART ||
+                    entity.getType() == EntityType.COMMAND_BLOCK_MINECART || entity.getType() == EntityType.SPAWNER_MINECART ||
+                    entity.getType() == EntityType.END_CRYSTAL || entity.getType() == EntityType.PAINTING ||
+                    entity.getType() == EntityType.TNT_MINECART || entity.getType() == EntityType.ELDER_GUARDIAN ||
+                    entity.getType() == EntityType.ENDER_DRAGON || entity.getType() == EntityType.WITHER || entity.getType() == EntityType.SHULKER ||
+                    entity.getType() == EntityType.VILLAGER || entity.hasVehicle() || entity.getType() == EntityType.BOAT || entity.getType() == EntityType.LEASH_KNOT ||
+                    entity instanceof PlayerEntity || entity instanceof TameableEntity) {
 
-                } else {
-                    entity.kill();
-                }
+            } else {
+                entity.kill();
+            }
+
+        } EntPurge2();
+    }
+    private void EntPurge2() {
+        ServerWorld instance = (ServerWorld) (Object) this;
+        for (Entity entity : instance.getEntitiesByType(EntityType.ITEM, EntityPredicates.EXCEPT_CREATIVE_OR_SPECTATOR)) {
+            if (entity.getType() == EntityType.ITEM) {
+                entity.kill();
             }
         }
     }
+}
+
