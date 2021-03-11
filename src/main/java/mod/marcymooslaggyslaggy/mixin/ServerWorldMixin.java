@@ -1,5 +1,6 @@
 package mod.marcymooslaggyslaggy.mixin;
 
+import mod.marcymooslaggyslaggy.config.Config;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.TameableEntity;
@@ -181,11 +182,14 @@ class Clear {
             if (entity instanceof TameableEntity) {
                 TameableEntity tameableEntity = (TameableEntity) entity;
 
-                if (tameableEntity.isTamed() || tameableEntity.hasCustomName() || tameableEntity.hasVehicle()) {
+                if (tameableEntity.isTamed() || tameableEntity.hasCustomName() ||
+                        tameableEntity.hasVehicle() || entity.getType() == EntityType.BEE ||
+                        entity.getType() == EntityType.HORSE || entity.getType() == EntityType.SKELETON_HORSE || entity.getType() == EntityType.DONKEY) {
                 } else {
                     entity.kill();
                 }
             }
+            /*
             if (entity.hasCustomName() ||
                     entity.getType() == EntityType.ARMOR_STAND || entity.getType() == EntityType.ITEM_FRAME ||
                     entity.getType() == EntityType.CHEST_MINECART || entity.getType() == EntityType.HOPPER_MINECART ||
@@ -195,8 +199,16 @@ class Clear {
                     entity.getType() == EntityType.TNT_MINECART || entity.getType() == EntityType.ELDER_GUARDIAN ||
                     entity.getType() == EntityType.ENDER_DRAGON || entity.getType() == EntityType.WITHER || entity.getType() == EntityType.SHULKER ||
                     entity.getType() == EntityType.VILLAGER || entity.hasVehicle() || entity.getType() == EntityType.BOAT || entity.getType() == EntityType.LEASH_KNOT ||
+                    entity.getType() == EntityType.BEE || entity.getType() == EntityType.HORSE || entity.getType() == EntityType.SKELETON_HORSE || entity.getType() == EntityType.DONKEY ||
+                    entity.getType() == EntityType.EVOKER ||
                     entity instanceof PlayerEntity || entity instanceof TameableEntity) {
+            */
 
+            //TODO: CHECK IF THIS ACTUALLY WORKS.
+            if (Config.WhitelistedEntities.contains(entity.getType()) || entity.hasVehicle() || entity.hasCustomName() || entity instanceof PlayerEntity) {
+                if (entity instanceof TameableEntity) {
+                    if (entity.hasCustomName() || ((TameableEntity) entity).isTamed() || entity.hasVehicle()) {}
+                }
             } else {
                 entity.kill();
             }
