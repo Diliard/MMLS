@@ -29,6 +29,7 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+
 @Mixin(ServerWorld.class)
 abstract
 class Clear {
@@ -166,7 +167,7 @@ class Clear {
         }
 
         //1 Hour
-        if (secondsPassed == 3600) {
+        if (secondsPassed == 10) {
             tick = 0;
             secondsPassed = 0;
             EntPurge();
@@ -178,6 +179,7 @@ class Clear {
     private void EntPurge() {
         ServerWorld instance = (ServerWorld) (Object) this;
         for (Entity entity : instance.getEntitiesByType(null, EntityPredicates.EXCEPT_CREATIVE_OR_SPECTATOR)) {
+            /*
 
             if (entity instanceof TameableEntity) {
                 TameableEntity tameableEntity = (TameableEntity) entity;
@@ -189,7 +191,6 @@ class Clear {
                     entity.kill();
                 }
             }
-            /*
             if (entity.hasCustomName() ||
                     entity.getType() == EntityType.ARMOR_STAND || entity.getType() == EntityType.ITEM_FRAME ||
                     entity.getType() == EntityType.CHEST_MINECART || entity.getType() == EntityType.HOPPER_MINECART ||
@@ -204,15 +205,12 @@ class Clear {
                     entity instanceof PlayerEntity || entity instanceof TameableEntity) {
             */
 
-            //TODO: CHECK IF THIS ACTUALLY WORKS.
-            if (Config.WhitelistedEntities.contains(entity.getType()) || entity.hasVehicle() || entity.hasCustomName() || entity instanceof PlayerEntity) {
-                if (entity instanceof TameableEntity) {
-                    if (entity.hasCustomName() || ((TameableEntity) entity).isTamed() || entity.hasVehicle()) {}
-                }
+            if (Config.WhitelistedEntities.contains(entity.getType())  || entity.hasVehicle() || entity.hasCustomName() || entity instanceof PlayerEntity) { }
+            else if (entity instanceof TameableEntity) {if (((TameableEntity) entity).isTamed() || ((TameableEntity) entity).isLeashed()) {}}
+            else if (entity.hasCustomName() || entity.hasVehicle()){
             } else {
                 entity.kill();
             }
-
         } EntPurge2();
     }
     private void EntPurge2() {

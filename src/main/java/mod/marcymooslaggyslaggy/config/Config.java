@@ -2,6 +2,7 @@ package mod.marcymooslaggyslaggy.config;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import net.minecraft.entity.EntityType;
 
 import java.io.File;
 import java.io.FileReader;
@@ -13,7 +14,7 @@ public class Config {
     private static final String CONFIG_PATH = "config/MMLS.json";
     private static final Config DEFAULT = new Config(true);
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
-    public static ArrayList WhitelistedEntities;
+    public static ArrayList<Object> WhitelistedEntities;
     public Config() {
     }
 
@@ -62,39 +63,41 @@ public class Config {
         }
     }
 
-    private static ArrayList createDefaultEntityList() {
-        ArrayList entities = new ArrayList<>();
-        entities.add("ITEM_FRAME");
-        entities.add("CHEST_MINECART");
-        entities.add("HOPPER_MINECART");
-        entities.add("MINECART");
-        entities.add("FURNACE_MINECART");
-        entities.add("COMMAND_BLOCK_MINECART");
-        entities.add("SPAWNER_MINECART");
-        entities.add("END_CRYSTAL");
-        entities.add("PAINTING");
-        entities.add("TNT_MINECART");
-        entities.add("ELDER_GUARDIAN");
-        entities.add("ENDER_DRAGON");
-        entities.add("WITHER");
-        entities.add("SHULKER");
-        entities.add("VILLAGER");
-        entities.add("BOAT");
-        entities.add("LEASH_KNOT");
-        entities.add("BEE");
-        entities.add("HORSE");
-        entities.add("SKELETON_HORSE");
-        entities.add("DONKEY");
-        entities.add("EVOKER");
-        entities.add("ITEM");
-        entities.add("AREA_EFFECT_CLOUD");
-        entities.add("ARROW");
-        entities.add("CAT");
-        entities.add("ENDER_DRAGON");
-        entities.add("END_CRYSTAL");
-        entities.add("FOX");
-        entities.add("WOLF");
-        entities.add("TRIDENT");
+    private static ArrayList<Object> createDefaultEntityList() {
+        ArrayList<Object> entities = new ArrayList<>();
+        entities.add(EntityType.ITEM_FRAME);
+        entities.add(EntityType.CHEST_MINECART);
+        entities.add(EntityType.HOPPER_MINECART);
+        entities.add(EntityType.MINECART);
+        entities.add(EntityType.FURNACE_MINECART);
+        entities.add(EntityType.COMMAND_BLOCK_MINECART);
+        entities.add(EntityType.SPAWNER_MINECART);
+        entities.add(EntityType.END_CRYSTAL);
+        entities.add(EntityType.PAINTING);
+        entities.add(EntityType.TNT_MINECART);
+        entities.add(EntityType.ELDER_GUARDIAN);
+        entities.add(EntityType.ENDER_DRAGON);
+        entities.add(EntityType.WITHER);
+        entities.add(EntityType.SHULKER);
+        entities.add(EntityType.VILLAGER);
+        entities.add(EntityType.BOAT);
+        entities.add(EntityType.LEASH_KNOT);
+        entities.add(EntityType.BEE);
+        entities.add(EntityType.HORSE);
+        entities.add(EntityType.SKELETON_HORSE);
+        entities.add(EntityType.DONKEY);
+        entities.add(EntityType.EVOKER);
+        entities.add(EntityType.ITEM);
+        entities.add(EntityType.AREA_EFFECT_CLOUD);
+        entities.add(EntityType.ENDER_PEARL);
+        entities.add(EntityType.ARROW);
+        entities.add(EntityType.CAT);
+        entities.add(EntityType.ENDER_DRAGON);
+        entities.add(EntityType.END_CRYSTAL);
+        entities.add(EntityType.FOX);
+        entities.add(EntityType.WOLF);
+        entities.add(EntityType.TRIDENT);
+        entities.add(EntityType.ARMOR_STAND);
         return entities;
     }
 }
