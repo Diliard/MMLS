@@ -1,6 +1,5 @@
 package mod.marcymooslaggyslaggy.mixin;
 
-import mod.marcymooslaggyslaggy.config.Config;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.TameableEntity;
@@ -28,7 +27,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
-
 
 @Mixin(ServerWorld.class)
 abstract
@@ -167,7 +165,7 @@ class Clear {
         }
 
         //1 Hour
-        if (secondsPassed == 10) {
+        if (secondsPassed == 3600) {
             tick = 0;
             secondsPassed = 0;
             EntPurge();
@@ -179,14 +177,11 @@ class Clear {
     private void EntPurge() {
         ServerWorld instance = (ServerWorld) (Object) this;
         for (Entity entity : instance.getEntitiesByType(null, EntityPredicates.EXCEPT_CREATIVE_OR_SPECTATOR)) {
-            /*
 
             if (entity instanceof TameableEntity) {
                 TameableEntity tameableEntity = (TameableEntity) entity;
 
-                if (tameableEntity.isTamed() || tameableEntity.hasCustomName() ||
-                        tameableEntity.hasVehicle() || entity.getType() == EntityType.BEE ||
-                        entity.getType() == EntityType.HORSE || entity.getType() == EntityType.SKELETON_HORSE || entity.getType() == EntityType.DONKEY) {
+                if (tameableEntity.isTamed() || tameableEntity.hasCustomName() || tameableEntity.hasVehicle()) {
                 } else {
                     entity.kill();
                 }
@@ -200,17 +195,12 @@ class Clear {
                     entity.getType() == EntityType.TNT_MINECART || entity.getType() == EntityType.ELDER_GUARDIAN ||
                     entity.getType() == EntityType.ENDER_DRAGON || entity.getType() == EntityType.WITHER || entity.getType() == EntityType.SHULKER ||
                     entity.getType() == EntityType.VILLAGER || entity.hasVehicle() || entity.getType() == EntityType.BOAT || entity.getType() == EntityType.LEASH_KNOT ||
-                    entity.getType() == EntityType.BEE || entity.getType() == EntityType.HORSE || entity.getType() == EntityType.SKELETON_HORSE || entity.getType() == EntityType.DONKEY ||
-                    entity.getType() == EntityType.EVOKER ||
                     entity instanceof PlayerEntity || entity instanceof TameableEntity) {
-            */
 
-            if (Config.WhitelistedEntities.contains(entity.getType())  || entity.hasVehicle() || entity.hasCustomName() || entity instanceof PlayerEntity) { }
-            else if (entity instanceof TameableEntity) {if (((TameableEntity) entity).isTamed() || ((TameableEntity) entity).isLeashed()) {}}
-            else if (entity.hasCustomName() || entity.hasVehicle()){
             } else {
                 entity.kill();
             }
+
         } EntPurge2();
     }
     private void EntPurge2() {
